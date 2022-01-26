@@ -1,6 +1,6 @@
 <template>
   <div class="upload">
-    <el-button type="primary" plain @click="dialogFormVisible = true" id="detail">上传内容</el-button>
+    <el-button type="primary" plain @click="dialogFormVisible = true" id="detail">上<br>传<br>内<br>容</el-button>
 
     <el-dialog title="上传文件" :visible.sync="dialogFormVisible">
       <el-form :model="form">
