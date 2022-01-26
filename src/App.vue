@@ -1,36 +1,42 @@
 <template>
   <div id="app">
-    <Goods id="goods"></Goods>
-    <el-button type="primary" plain @click="open">可以点击提交内容</el-button>
+    <Goods id="goods" :detail="rows"></Goods>
+    <Upload></Upload>
+    <ChangePage @biubiu="getPage"></ChangePage>
   </div>
 </template>
 
 <script>
 import Goods from "./components/Goods.vue"
+import Upload from "./components/Upload"
+import ChangePage from "@/components/ChangePage";
+import {request} from "@/network/request";
 
 export default {
   name: 'App',
   components: {
-    Goods
+    Goods,
+    Upload,
+    ChangePage
   },
   methods: {
-    open() {
-      this.$prompt('请输入邮箱', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        inputPattern: /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-        inputErrorMessage: '邮箱格式不正确'
-      }).then(({ value }) => {
-        this.$message({
-          type: 'success',
-          message: '你的邮箱是: ' + value
-        });
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '取消输入'
-        });
-      });
+    getPage(val){
+      this.rows = val.rows;
+      this.total = val.total;
+      console.log(val)
+    }
+  },
+  created() {
+    request("/unit/1/6").then(res => {
+      this.rows = res.rows;
+      this.total = res.total;
+      console.log(res)
+    })
+  },
+  data(){
+    return {
+      rows: [],
+      total: 0
     }
   }
 }
