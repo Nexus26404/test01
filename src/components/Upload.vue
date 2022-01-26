@@ -1,6 +1,6 @@
 <template>
   <div class="upload">
-    <el-button type="primary" plain @click="dialogFormVisible = true">上传内容</el-button>
+    <el-button type="primary" plain @click="dialogFormVisible = true" id="detail">上传内容</el-button>
 
     <el-dialog title="上传文件" :visible.sync="dialogFormVisible">
       <el-form :model="form">
@@ -87,5 +87,10 @@ export default {
 </script>
 
 <style scoped>
-
+  #detail {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+  }
 </style>
