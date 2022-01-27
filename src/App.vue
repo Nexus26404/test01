@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Banner></Banner>
     <Goods id="goods" :detail="rows"></Goods>
     <Upload></Upload>
     <ChangePage @biubiu="getPage"></ChangePage>
@@ -10,14 +11,18 @@
 import Goods from "./components/Goods.vue"
 import Upload from "./components/Upload"
 import ChangePage from "@/components/ChangePage";
+import Banner from "@/components/Banner";
+
 import {request} from "@/network/request";
+
 
 export default {
   name: 'App',
   components: {
     Goods,
     Upload,
-    ChangePage
+    ChangePage,
+    Banner
   },
   methods: {
     getPage(val){
